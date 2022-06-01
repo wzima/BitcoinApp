@@ -1,9 +1,7 @@
 package com.example.bitcoinapp.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.example.bitcoinapp.data.local.BitcoinPriceDatabase
 import com.example.bitcoinapp.data.remote.BitcoinPriceApi
 import dagger.Module
 import dagger.Provides
@@ -29,15 +27,4 @@ object AppModule {
             .create()
     }
 
-    @Provides
-    @Singleton
-    fun provideBitcoinPriceDatabase(@ApplicationContext app: Context): BitcoinPriceDatabase {
-        return Room.databaseBuilder(
-            app,
-            BitcoinPriceDatabase::class.java,
-            BitcoinPriceDatabase.DB_NAME
-        )
-            .fallbackToDestructiveMigration()
-            .build()
-    }
 }

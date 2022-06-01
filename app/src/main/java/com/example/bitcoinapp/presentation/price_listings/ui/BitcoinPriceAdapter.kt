@@ -9,22 +9,22 @@ import com.example.bitcoinapp.databinding.PriceItemViewBinding
 import com.example.bitcoinapp.domain.model.BitcoinPriceListing
 
 class BitcoinPriceAdapter() :
-    ListAdapter<BitcoinPriceListing, BitcoinPriceAdapter.ComicViewHolder>(COMPARATOR) {
+    ListAdapter<BitcoinPriceListing, BitcoinPriceAdapter.BitcoinPriceViewHolder>(COMPARATOR) {
 
     private lateinit var binding: PriceItemViewBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BitcoinPriceViewHolder {
         binding = PriceItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ComicViewHolder(binding)
+        return BitcoinPriceViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BitcoinPriceViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
 
     }
 
-    class ComicViewHolder(private val binding: PriceItemViewBinding) :
+    class BitcoinPriceViewHolder(private val binding: PriceItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(bitcoinPriceListing: BitcoinPriceListing) {

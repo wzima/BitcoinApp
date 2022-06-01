@@ -7,7 +7,9 @@
     <string name="CurrentBitcoinPrices">Aktuelle Bitcoin-Preise</string>
     <string name="PriceValue">%1$.2f</string>
     <string name="BitcoinValue">%1$.5f Bitcoin</string>
-    <string name="PleaseEnterValue">Betrag</string>
+    <string name="PleaseEnterValue">Bitte Betrag eingeben</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Abbrechen</string>
     <string-array name="currency_array">
         <item>EUR</item>
         <item>USD</item>

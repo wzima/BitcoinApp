@@ -86,4 +86,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
+
+    //MPChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

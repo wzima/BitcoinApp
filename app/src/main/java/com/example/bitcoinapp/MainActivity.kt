@@ -25,9 +25,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // using toolbar as ActionBar
+        setSupportActionBar(binding.toolbar)
+
         // Tabs Customization
         binding.tabLayout.setSelectedTabIndicatorColor(Color.WHITE)
-        binding.tabLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryDark))
+        binding.tabLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_blue))
         binding.tabLayout.tabTextColors =
             ContextCompat.getColorStateList(this, android.R.color.white)
 

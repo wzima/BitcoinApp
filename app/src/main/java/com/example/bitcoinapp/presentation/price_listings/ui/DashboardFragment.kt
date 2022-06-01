@@ -2,11 +2,10 @@ package com.example.bitcoinapp.presentation.price_listings.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.bitcoinapp.R
 import com.example.bitcoinapp.databinding.DashboardFragmentBinding
 import com.example.bitcoinapp.presentation.price_listings.BitcoinPriceListingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,7 +56,31 @@ class DashboardFragment : Fragment() {
             binding.swipeToRefresh.isRefreshing = false
         }
 
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.dashboard_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.addMyBitcoins -> openMyBitcoinsDialog()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openMyBitcoinsDialog() {
+
+        MyBitcoinsDialogFragment().show(
+            childFragmentManager, MyBitcoinsDialogFragment.TAG
+        )
+
     }
 
 }
