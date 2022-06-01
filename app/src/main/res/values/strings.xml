@@ -1,6 +1,19 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Bitcoin App</string>
     <string name="Dashboard">Dashboard</string>
     <string name="Converter">Umrechner</string>
     <string name="MyBitcoins">Meine Bitcoins</string>
+    <string name="NoPricesLoaded">Es konnten keine Preise geladen werden.</string>
+    <string name="CurrentBitcoinPrices">Aktuelle Bitcoin-Preise</string>
+    <string name="PriceValue">%1$.2f</string>
+    <string name="BitcoinValue">%1$.5f Bitcoin</string>
+    <string name="PleaseEnterValue">Betrag</string>
+    <string-array name="currency_array">
+        <item>EUR</item>
+        <item>USD</item>
+        <item>AUD</item>
+        <item>NZD</item>
+        <item>GBP</item>
+    </string-array>
+
 </resources>

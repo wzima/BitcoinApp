@@ -6,7 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface BitcoinPriceRepository {
 
-    suspend fun getPriceListings(
-        fetchFromRemote: Boolean
-    ): Flow<Resource<List<BitcoinPriceListing>>>
+    suspend fun getPriceListings(): Flow<Resource<List<BitcoinPriceListing>>>
 }

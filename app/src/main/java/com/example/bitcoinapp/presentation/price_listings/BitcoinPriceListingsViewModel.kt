@@ -1,9 +1,7 @@
 package com.example.bitcoinapp.presentation.price_listings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.bitcoinapp.domain.model.BitcoinPriceListing
 import com.example.bitcoinapp.domain.repository.BitcoinPriceRepository
 import com.example.bitcoinapp.util.Resource
@@ -16,39 +14,40 @@ import kotlinx.coroutines.flow.collect
 class BitcoinPriceListingsViewModel @Inject constructor(private val repository: BitcoinPriceRepository) :
     ViewModel() {
 
-    //var state by mutableStateOf(BitcoinPriceListingsState())
-    //list of all comics in favorite database
-    lateinit var allBitcoinPrices: LiveData<List<BitcoinPriceListing>>
+    private val _currentBitcoinPrices = MutableLiveData<List<BitcoinPriceListing>>()
+    val allBitcoinPrices: LiveData<List<BitcoinPriceListing>>
+        get() = _currentBitcoinPrices
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     init {
         getBitcoinPriceListings()
     }
 
-    fun onEvent(event: BitcoinPriceListingsEvent) {
-        when (event) {
-            is BitcoinPriceListingsEvent.Refresh -> {
-                getBitcoinPriceListings(fetchFromRemote = true)
-            }
-        }
-    }
-
-    fun getBitcoinPriceListings(
-        fetchFromRemote: Boolean = false
-    ) {
+    fun getBitcoinPriceListings() {
         viewModelScope.launch {
             repository
-                .getPriceListings(fetchFromRemote)
+                .getPriceListings()
                 .collect { result ->
                     when (result) {
                         is Resource.Success -> {
+                            Log.d("getBitcoinPriceListings","Resource.Success")
                             result.data?.let { listings ->
-                                allBitcoinPrices = liveData { listings }
+                                _currentBitcoinPrices.value = listings
                             }
                         }
                         is Resource.Error -> {
+                            //show error message
+                            Log.d("getBitcoinPriceListings","Resource.Error")
                             Unit
                         }
                         is Resource.Loading -> {
+                            //show loading
+                            Log.d("getBitcoinPriceListings","Resource.Loading")
+
+                            _isLoading.value = result.isLoading
                             Unit
                         }
                     }

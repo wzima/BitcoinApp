@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         //tab_layout.setTabTextColors(R.color.normalTabTextColor, R.color.selectedTabTextColor)
 
         // Number Of Tabs
-        val numberOfTabs = 3
+        val numberOfTabs = 2
 
         // Set Tabs in the center
         //tab_layout.tabGravity = TabLayout.GRAVITY_CENTER
@@ -114,9 +114,6 @@ class MainActivity : AppCompatActivity() {
 
                     // Change Font and Size
                     tabViewChild.typeface = Typeface.DEFAULT_BOLD
-//                    val font = ResourcesCompat.getFont(this, R.font.myFont)
-//                    tabViewChild.typeface = font
-//                    tabViewChild.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25f)
                 }
             }
         }

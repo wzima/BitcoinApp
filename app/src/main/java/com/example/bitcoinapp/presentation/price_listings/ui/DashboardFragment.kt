@@ -1,12 +1,12 @@
 package com.example.bitcoinapp.presentation.price_listings.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.bitcoinapp.R
 import com.example.bitcoinapp.databinding.DashboardFragmentBinding
 import com.example.bitcoinapp.presentation.price_listings.BitcoinPriceListingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,9 +24,39 @@ class DashboardFragment : Fragment() {
     ): View {
         binding = DashboardFragmentBinding.inflate(inflater, container, false)
 
-        binding.fragmentName.setText(R.string.Dashboard)
+        viewModel.isLoading.observe(viewLifecycleOwner)
+        { isLoading ->
+            Log.d("isLoading", isLoading.toString())
+            binding.progressBar.visibility =
+                if (isLoading) View.VISIBLE
+                else View.GONE
+        }
 
-        viewModel.getBitcoinPriceListings()
+        with(binding.recyclerView) {
+            val myAdapter = BitcoinPriceAdapter()
+            adapter = myAdapter
+            // Add an observer on the LiveData
+            viewModel.allBitcoinPrices.observe(viewLifecycleOwner) { listings ->
+                listings.let { myAdapter.submitList(it) }
+                Log.d("getPriceListings", listings.size.toString())
+                listings.forEach {
+                    Log.d("getPriceListings", it.currency + " " + it.price)
+                }
+
+            }
+
+            //show a message when list ist empty
+            setEmptyView(binding.tvEmpty)
+        }
+
+
+        binding.swipeToRefresh.isEnabled = true
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.getBitcoinPriceListings()
+
+            binding.swipeToRefresh.isRefreshing = false
+        }
+
         return binding.root
     }
 

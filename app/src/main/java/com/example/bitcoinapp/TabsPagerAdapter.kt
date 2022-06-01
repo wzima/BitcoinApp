@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.bitcoinapp.presentation.price_listings.ui.ConverterFragment
 import com.example.bitcoinapp.presentation.price_listings.ui.DashboardFragment
 
 class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int) :
@@ -13,7 +14,6 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> {
-                // # Music Fragment
                 val bundle = Bundle()
                 bundle.putString(FRAGMENT_NAME, "Dashboard Fragment")
                 val dashboardFragment = DashboardFragment()
@@ -21,7 +21,6 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 return dashboardFragment
             }
             1 -> {
-                // # Movies Fragment
                 val bundle = Bundle()
                 bundle.putString(FRAGMENT_NAME, "Converter Fragment")
                 val converterFragment = ConverterFragment()
@@ -29,7 +28,6 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 return converterFragment
             }
             2 -> {
-                // # Books Fragment
                 val bundle = Bundle()
                 bundle.putString(FRAGMENT_NAME, "MyBitcoins Fragment")
                 val myBitcoinsFragment = MyBitcoinsFragment()

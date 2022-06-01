@@ -1,9 +1,6 @@
 package com.example.bitcoinapp.data.repository
 
 import com.example.bitcoinapp.data.json.JSONParser
-import com.example.bitcoinapp.data.local.BitcoinPriceDatabase
-import com.example.bitcoinapp.data.mapper.toBitcoinPriceListing
-import com.example.bitcoinapp.data.mapper.toBitcoinPriceListingEntity
 import com.example.bitcoinapp.data.remote.BitcoinPriceApi
 import com.example.bitcoinapp.domain.model.BitcoinPriceListing
 import com.example.bitcoinapp.domain.repository.BitcoinPriceRepository
@@ -22,9 +19,7 @@ class BitcoinPriceRepositoryImpl @Inject constructor(
 ) : BitcoinPriceRepository {
 
 
-    override suspend fun getPriceListings(
-        fetchFromRemote: Boolean
-    ): Flow<Resource<List<BitcoinPriceListing>>> {
+    override suspend fun getPriceListings(): Flow<Resource<List<BitcoinPriceListing>>> {
         return flow {
             emit(Resource.Loading(true))
 
@@ -42,6 +37,7 @@ class BitcoinPriceRepositoryImpl @Inject constructor(
                 emit(Resource.Error("Couldn't load data"))
                 null
             }
+
             remoteListings?.let { listings ->
                 emit(Resource.Success(data = listings))
                 emit(Resource.Loading(false))
