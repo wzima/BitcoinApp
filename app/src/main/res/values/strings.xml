@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Bitcoin App</string>
+    <string name="Dashboard">Dashboard</string>
+    <string name="Converter">Umrechner</string>
+    <string name="MyBitcoins">Meine Bitcoins</string>
+</resources>
