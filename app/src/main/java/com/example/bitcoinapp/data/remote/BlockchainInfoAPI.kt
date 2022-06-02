@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface BlockchainInfoAPI {
+    //https://blockchain.info/ticker
 
 
     @GET("ticker")
