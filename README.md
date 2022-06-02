@@ -10,4 +10,4 @@ The communication with the Blockchain API is done via Retrofit and the data are 
 
 
 Screenshots:
-![Alt text](Screenshot_BitcoinApp_Dashboard.png | width=300 "Dashboard")
+<a href="url"><img src="Screenshot_BitcoinApp_Dashboard.png" align="left" height="300"  ></a>
