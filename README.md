@@ -10,7 +10,8 @@ The communication with the Blockchain API is done via Retrofit and the data are 
 
 <br><hr>
 Screenshots:
-<a href="url"><img src="Screenshot_BitcoinApp_Dashboard.png" height="500" caption="Dashboard"></a>
+<br>
+<a href="url"><img src="Screenshot_BitcoinApp_Dashboard.png" height="500" ></a>
 <a href="url"><img src="Screenshot_BitcoinApp_Umrechner.png"  height="500"  ></a>
 <a href="url"><img src="Screenshot_BitcoinApp_MeineBitcoins.png"  height="500"  ></a>
 <a href="url"><img src="Screenshot_BitcoinApp_MyBitcoinsDialog.png"  height="500"  ></a>
