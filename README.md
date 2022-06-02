@@ -7,3 +7,7 @@ This small app shows the current Bitcoin rates, a Bitcoin currency converter and
 - The My Bitcoins-Tab shows your Bitcoin stock and the corresponding value in Euros.
 
 The communication with the Blockchain API is done via Retrofit and the data are parsed from JSON. The chart was created using the MPAndroidChart library. Dependency injection was done using Hilt/Dagger. View binding and data binding are used as well as MVVM architecture.
+
+
+Screenshots:
+![Alt text](Screenshot_BitcoinApp_Dashboard.png?raw=true "Dashboard")
