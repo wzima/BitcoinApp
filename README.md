@@ -8,6 +8,9 @@ This small app shows the current Bitcoin rates, a Bitcoin currency converter and
 
 The communication with the Blockchain API is done via Retrofit and the data are parsed from JSON. The chart was created using the MPAndroidChart library. Dependency injection was done using Hilt/Dagger. View binding and data binding are used as well as MVVM architecture.
 
-
+<br><hr>
 Screenshots:
-<a href="url"><img src="Screenshot_BitcoinApp_Dashboard.png" align="left" height="300"  ></a>
+<a href="url"><img src="Screenshot_BitcoinApp_Dashboard.png" align="right" height="500"  ></a>
+<a href="url"><img src="Screenshot_BitcoinApp_MeineBitcoins.png" align="right" height="500"  ></a>
+<a href="url"><img src="Screenshot_BitcoinApp_MyBitcoinsDialog.png" align="right" height="500"  ></a>
+<a href="url"><img src="Screenshot_BitcoinApp_Umrechner.png" align="right" height="500"  ></a>
