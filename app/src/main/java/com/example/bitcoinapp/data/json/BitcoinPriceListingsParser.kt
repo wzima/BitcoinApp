@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BitcoinPriceListingsParser @Inject constructor() : JSONParser<BitcoinPriceListing> {
-    override suspend fun parse(response: Response<Map<String, CurrencyValuesJSONModel>>): List<BitcoinPriceListing> {
+class BitcoinPriceListingsParser @Inject constructor() : ListingsJSONParser<BitcoinPriceListing> {
+    override suspend fun parseCurrencyValues(response: Response<Map<String, CurrencyValuesJSONModel>>): List<BitcoinPriceListing> {
         return withContext(Dispatchers.IO) {
             if (response.isSuccessful) {
 
@@ -27,23 +27,9 @@ class BitcoinPriceListingsParser @Inject constructor() : JSONParser<BitcoinPrice
             }
 
 
-            //            csvReader
-//                .readAll()
-//                .drop(1)
-//                .mapNotNull { line ->
-//                    val symbol = line.getOrNull(0)
-//                    val name = line.getOrNull(1)
-//                    val exchange = line.getOrNull(2)
-//                    CompanyListing(
-//                        name = name ?: return@mapNotNull null,
-//                        symbol = symbol ?: return@mapNotNull null,
-//                        exchange = exchange ?: return@mapNotNull null,
-//                    )
-//                }
-//                .also {
-//                    csvReader.close()
-//                }
         }
 
     }
+
+
 }

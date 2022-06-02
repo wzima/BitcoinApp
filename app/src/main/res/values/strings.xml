@@ -7,9 +7,16 @@
     <string name="CurrentBitcoinPrices">Aktuelle Bitcoin-Preise</string>
     <string name="PriceValue">%1$.2f</string>
     <string name="BitcoinValue">%1$.5f Bitcoin</string>
+    <string name="BitcoinEuroValue">Du besitzt %1$.5f Bitcoin (%2$.2f Euro)</string>
+    <string name="EuroValue">%1$.2f Euro</string>
     <string name="PleaseEnterValue">Bitte Betrag eingeben</string>
     <string name="ok">Ok</string>
     <string name="cancel">Abbrechen</string>
+    <string name="MyBitcoinsDescription">Falls du Bitcoins besitzt kannst du hier den Betrag eingeben. Dieser wird in der App gespeichert und der aktuelle Gegenwert in Euro angezeigt.</string>
+    <string name="YourBitcoins">Dein Bitcoin-Betrag</string>
+    <string name="YouOwn">Du besitzt</string>
+    <string name="InEuros">Dies entspricht</string>
+    <string name="YouHaveNoBitcoins">Du besitzt noch keine Bitcoins. Du kannst über das Dashboard deinen Bitcoin-Betrag eingeben.</string>
     <string-array name="currency_array">
         <item>EUR</item>
         <item>USD</item>

@@ -1,12 +1,10 @@
 package com.example.bitcoinapp.di
 
-import android.content.Context
-import androidx.room.Room
-import com.example.bitcoinapp.data.remote.BitcoinPriceApi
+import com.example.bitcoinapp.data.remote.BlockchainChartAPI
+import com.example.bitcoinapp.data.remote.BlockchainInfoAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,9 +17,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideBitcoinPriceApi(): BitcoinPriceApi {
+    fun provideBitcoinPriceApi(): BlockchainInfoAPI {
         return Retrofit.Builder()
-            .baseUrl(BitcoinPriceApi.BASE_URL)
+            .baseUrl(BlockchainInfoAPI.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create()
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideBitcoinChartApi(): BlockchainChartAPI {
+        return Retrofit.Builder()
+            .baseUrl(BlockchainChartAPI.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create()

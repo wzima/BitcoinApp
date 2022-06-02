@@ -2,15 +2,16 @@ package com.example.bitcoinapp.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
-interface BitcoinPriceApi {
+interface BlockchainInfoAPI {
+
 
     @GET("ticker")
-    suspend fun getListings(
+    suspend fun getCurrencyListings(
     ): Response<Map<String, CurrencyValuesJSONModel>>
 
     companion object {
-        //        const val API_KEY = "9CIDNW96CNEIGQF7"
         const val BASE_URL = "https://blockchain.info"
     }
 }

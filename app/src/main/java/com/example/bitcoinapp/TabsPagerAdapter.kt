@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.bitcoinapp.presentation.price_listings.ui.ConverterFragment
-import com.example.bitcoinapp.presentation.price_listings.ui.DashboardFragment
+import com.example.bitcoinapp.presentation.ui.ConverterFragment
+import com.example.bitcoinapp.presentation.ui.DashboardFragment
+import com.example.bitcoinapp.presentation.ui.MyBitcoinsFragment
 
 class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int) :
     FragmentStateAdapter(fm, lifecycle) {

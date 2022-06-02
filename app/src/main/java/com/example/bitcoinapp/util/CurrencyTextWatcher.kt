@@ -3,20 +3,20 @@ package com.example.bitcoinapp.util
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import com.example.bitcoinapp.presentation.price_listings.BitcoinPriceListingsViewModel
+import com.example.bitcoinapp.presentation.viewmodels.BitcoinPriceListingsViewModel
 
 class CurrencyTextWatcher(val editText: EditText, val viewModel: BitcoinPriceListingsViewModel) :
     TextWatcher {
 
-    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    override fun onTextChanged(cs: CharSequence?, start: Int, before: Int, count: Int) {
         if (!editText.hasFocus())
             return
 
-        val value = editText.text.toString().replace(",", ".").toFloatOrNull() ?: 0.0f
+        val value = NumberFormatParser.getNumber(editText.text.toString())
         viewModel.userCurrencyValue.value = value
     }
 
-    override fun afterTextChanged(p0: Editable?) {
+    override fun afterTextChanged(editable: Editable?) {
     }
 
     override fun beforeTextChanged(cs: CharSequence?, start: Int, before: Int, count: Int) {

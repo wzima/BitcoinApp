@@ -1,23 +1,31 @@
 package com.example.bitcoinapp
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import androidx.fragment.app.activityViewModels
 import com.example.bitcoinapp.databinding.ActivityMainBinding
+import com.example.bitcoinapp.presentation.ui.MyBitcoinsDialogFragment
+import com.example.bitcoinapp.presentation.ui.MyBitcoinsDialogFragment.Companion.MY_BITCOIN_PREF_NAME
+import com.example.bitcoinapp.presentation.viewmodels.BitcoinPriceListingsViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    val viewModel: BitcoinPriceListingsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +36,21 @@ class MainActivity : AppCompatActivity() {
         // using toolbar as ActionBar
         setSupportActionBar(binding.toolbar)
 
+        createTabs()
+
+        if (!viewModel.isInitialized) {
+            val sharedPrefs =
+                getSharedPreferences(MyBitcoinsDialogFragment.PREFS_NAME, Context.MODE_PRIVATE)
+            val myBitcoins = sharedPrefs.getFloat(MY_BITCOIN_PREF_NAME, 0f)
+            viewModel.myBitcoins.value = myBitcoins
+            viewModel.myBitcoins.observeForever {
+                sharedPrefs.edit().putFloat(MY_BITCOIN_PREF_NAME, it).apply()
+            }
+        }
+
+    }
+
+    private fun createTabs() {
         // Tabs Customization
         binding.tabLayout.setSelectedTabIndicatorColor(Color.WHITE)
         binding.tabLayout.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_blue))
@@ -38,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         //tab_layout.setTabTextColors(R.color.normalTabTextColor, R.color.selectedTabTextColor)
 
         // Number Of Tabs
-        val numberOfTabs = 2
+        val numberOfTabs = 3
 
         // Set Tabs in the center
         //tab_layout.tabGravity = TabLayout.GRAVITY_CENTER
@@ -87,19 +110,6 @@ class MainActivity : AppCompatActivity() {
 
 
         setCustomTabTitles()
-
-//        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//            override fun onTabSelected(tab: TabLayout.Tab) {
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab) {
-//
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab) {
-//
-//            }
-//        })
     }
 
     private fun setCustomTabTitles() {

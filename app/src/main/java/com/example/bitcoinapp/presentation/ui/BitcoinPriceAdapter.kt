@@ -1,4 +1,4 @@
-package com.example.bitcoinapp.presentation.price_listings.ui
+package com.example.bitcoinapp.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

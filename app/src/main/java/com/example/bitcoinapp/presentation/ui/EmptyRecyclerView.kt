@@ -1,9 +1,8 @@
-package com.example.bitcoinapp.presentation.price_listings.ui
+package com.example.bitcoinapp.presentation.ui
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 
 

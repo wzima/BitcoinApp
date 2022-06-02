@@ -1,4 +1,4 @@
-package com.example.bitcoinapp.presentation.price_listings.ui
+package com.example.bitcoinapp.presentation.ui
 
 import android.os.Bundle
 import android.text.method.DigitsKeyListener
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.bitcoinapp.R
 import com.example.bitcoinapp.databinding.ConverterFragmentBinding
 import com.example.bitcoinapp.domain.model.BitcoinPriceListing
-import com.example.bitcoinapp.presentation.price_listings.BitcoinPriceListingsViewModel
-import com.example.bitcoinapp.util.CurrencyConverter
+import com.example.bitcoinapp.presentation.viewmodels.BitcoinPriceListingsViewModel
 import com.example.bitcoinapp.util.CurrencyTextWatcher
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormatSymbols
@@ -24,7 +24,7 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     lateinit var binding: ConverterFragmentBinding
 
-    val viewModel: BitcoinPriceListingsViewModel by viewModels()
+    val viewModel: BitcoinPriceListingsViewModel by activityViewModels()
     var bitcoinPriceListings: List<BitcoinPriceListing>? = null
 
     override fun onCreateView(
@@ -34,6 +34,8 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View {
         binding = ConverterFragmentBinding.inflate(inflater, container, false)
 
+        val watcher = CurrencyTextWatcher(binding.etUserValue, viewModel)
+        binding.etUserValue.addTextChangedListener(watcher)
 
 //        val sep = DecimalFormatSymbols.getInstance().decimalSeparator
 //        binding.etUserValue.keyListener = DigitsKeyListener.getInstance("0123456789$sep")
@@ -52,8 +54,6 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener {
             updateFields()
         }
 
-        val watcher = CurrencyTextWatcher(binding.etUserValue, viewModel)
-        binding.etUserValue.addTextChangedListener(watcher)
 
 //set arrayadapter for spinner
         ArrayAdapter.createFromResource(
@@ -70,13 +70,9 @@ class ConverterFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun updateFields() {
-        val userValue = binding.etUserValue.text.toString().toFloatOrNull()
-        if (userValue != null) {
-            binding.etUserValue.text.toString().toFloatOrNull()?.let { userValue -> }
-            val bitcoinPrice = viewModel.convertToBitcoin()
-            binding.currency = bitcoinPrice
-        } else
-            binding.currency = 0.0f
+        val bitcoinPrice = viewModel.convertToBitcoin()
+        binding.currency = bitcoinPrice
+
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
