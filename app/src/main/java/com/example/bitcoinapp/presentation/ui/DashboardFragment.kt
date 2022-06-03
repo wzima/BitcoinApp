@@ -48,6 +48,8 @@ class DashboardFragment : Fragment() {
         {
             updateMyBitcoinView(it)
         }
+
+        //observer for updating euro value when the rate has been updated
         viewModel.bitcoinToEuroRate.observe(viewLifecycleOwner) {
             binding.myBitcoinsInEuro = viewModel.convertBitcoinToEuro()
         }
@@ -155,6 +157,9 @@ class DashboardFragment : Fragment() {
             legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
             legend.form = Legend.LegendForm.LINE
 
+            setTouchEnabled(false)
+            setPinchZoom(false)
+            isDoubleTapToZoomEnabled = false
         }
     }
 
