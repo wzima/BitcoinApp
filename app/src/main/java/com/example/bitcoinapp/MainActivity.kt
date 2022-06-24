@@ -37,11 +37,6 @@ class MainActivity : AppCompatActivity() {
         // using toolbar as ActionBar
         setSupportActionBar(binding.toolbar)
 
-
-        val i=0
-        val j=0
-        //third commit
-
         createTabs()
 
         if (!viewModel.isInitialized) {
