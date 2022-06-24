@@ -24,6 +24,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+
     private lateinit var binding: ActivityMainBinding
     val viewModel: BitcoinPriceListingsViewModel by viewModels()
 
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         // using toolbar as ActionBar
         setSupportActionBar(binding.toolbar)
+
+
+        val i=0
 
         createTabs()
 
